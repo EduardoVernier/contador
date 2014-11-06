@@ -20,13 +20,15 @@ body{
 #left{
 	display: block;
 	float:left;
-	width: 50%;
+	width: 45%;
+	margin-left: 5%;
 }
 
 #right{
 	display: block;
 	float: right;
-	width: 50%;
+	width: 45%;
+	margin-right: 5%;
 }
 
 #left img {
@@ -52,7 +54,7 @@ h2{
 }
 
 #replayDiv{
-	top: 86%;
+	top: 82%;
 	width: 100%;
 	position: absolute;
 }
