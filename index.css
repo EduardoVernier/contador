@@ -56,7 +56,6 @@ h2{
 
 #replayDiv{
 	top: 90%;
-	left: 10%;
 	width: 100%;
 	position: absolute;
 }
@@ -73,4 +72,5 @@ h1{
 h3{
 	font-size: 3em;
 	color: black;
+	padding-left: 10%;
 }
