@@ -6,8 +6,6 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<meta charset="utf-8"/>
 	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
 </head>
 <body>
 	<h1>CONTADOR</h1>
@@ -66,22 +64,76 @@
 				document.getElementById('s1').innerHTML = score1;
 				document.getElementById('s2').innerHTML = score2;			
 			};
-			(function($) {
-			  $.fn.nodoubletapzoom = function() {
-			      $(this).bind('touchstart', function preventZoom(e) {
-			        var t2 = e.timeStamp
-			          , t1 = $(this).data('lastTouch') || t2
-			          , dt = t2 - t1
-			          , fingers = e.originalEvent.touches.length;
-			        $(this).data('lastTouch', t2);
-			        if (!dt || dt > 500 || fingers > 1) return; // not double-tap
 
-			        e.preventDefault(); // double tap - prevent the zoom
-			        // also synthesize click events we just swallowed up
-			        $(this).trigger('click').trigger('click');
-			      });
-			  };
-			})(jQuery);
+			document.getElementById('up1').addEventListener('touchend', function(event) {
+			    var currentTime = new Date().getTime();
+			    var tapLength = currentTime - lastTap;
+			    clearTimeout(timeout);
+			    if (tapLength < 500 && tapLength > 0) {
+			        elm2.innerHTML = 'Double Tap';
+			        event.preventDefault();
+			    } else {
+			        elm2.innerHTML = 'Single Tap';
+			        timeout = setTimeout(function() {
+			            elm2.innerHTML = 'Single Tap (timeout)';
+			            clearTimeout(timeout);
+			        }, 500);
+			    }
+			    lastTap = currentTime;
+			});
+
+			document.getElementById('up2').addEventListener('touchend', function(event) {
+			    var currentTime = new Date().getTime();
+			    var tapLength = currentTime - lastTap;
+			    clearTimeout(timeout);
+			    if (tapLength < 500 && tapLength > 0) {
+			        elm2.innerHTML = 'Double Tap';
+			        event.preventDefault();
+			    } else {
+			        elm2.innerHTML = 'Single Tap';
+			        timeout = setTimeout(function() {
+			            elm2.innerHTML = 'Single Tap (timeout)';
+			            clearTimeout(timeout);
+			        }, 500);
+			    }
+			    lastTap = currentTime;
+			});
+
+			document.getElementById('down1').addEventListener('touchend', function(event) {
+			    var currentTime = new Date().getTime();
+			    var tapLength = currentTime - lastTap;
+			    clearTimeout(timeout);
+			    if (tapLength < 500 && tapLength > 0) {
+			        elm2.innerHTML = 'Double Tap';
+			        event.preventDefault();
+			    } else {
+			        elm2.innerHTML = 'Single Tap';
+			        timeout = setTimeout(function() {
+			            elm2.innerHTML = 'Single Tap (timeout)';
+			            clearTimeout(timeout);
+			        }, 500);
+			    }
+			    lastTap = currentTime;
+			});
+
+			document.getElementById('down2').addEventListener('touchend', function(event) {
+			    var currentTime = new Date().getTime();
+			    var tapLength = currentTime - lastTap;
+			    clearTimeout(timeout);
+			    if (tapLength < 500 && tapLength > 0) {
+			        elm2.innerHTML = 'Double Tap';
+			        event.preventDefault();
+			    } else {
+			        elm2.innerHTML = 'Single Tap';
+			        timeout = setTimeout(function() {
+			            elm2.innerHTML = 'Single Tap (timeout)';
+			            clearTimeout(timeout);
+			        }, 500);
+			    }
+			    lastTap = currentTime;
+			});
+
+
 
 		};
 		</script>
