@@ -6,8 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="index.css">
 	<meta charset="utf-8"/>
 	<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-	 
 </head>
 <body>
 	<h1>CONTADOR</h1>
@@ -46,7 +46,7 @@
 
 			document.getElementById('up2').onclick = function() {
 				if (score2 < 24)
-F					score2++;
+					score2++;
 				updateScore();
 			};
 
@@ -66,14 +66,23 @@ F					score2++;
 				document.getElementById('s1').innerHTML = score1;
 				document.getElementById('s2').innerHTML = score2;			
 			};
-			var doubleTouchStartTimestamp = 0;
-			document.addEventListener("touchstart", function (event) {
-			    var now = +(new Date());
-			    if (doubleTouchStartTimestamp + 500 > now) {
-			        event.preventDefault();
-			    }
-			    doubleTouchStartTimestamp = now;
-			});
+			(function($) {
+			  $.fn.nodoubletapzoom = function() {
+			      $(this).bind('touchstart', function preventZoom(e) {
+			        var t2 = e.timeStamp
+			          , t1 = $(this).data('lastTouch') || t2
+			          , dt = t2 - t1
+			          , fingers = e.originalEvent.touches.length;
+			        $(this).data('lastTouch', t2);
+			        if (!dt || dt > 500 || fingers > 1) return; // not double-tap
+
+			        e.preventDefault(); // double tap - prevent the zoom
+			        // also synthesize click events we just swallowed up
+			        $(this).trigger('click').trigger('click');
+			      });
+			  };
+			})(jQuery);
+
 		};
 		</script>
 
